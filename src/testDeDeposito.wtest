@@ -1,0 +1,82 @@
+import bicis.*
+import accesorios.*
+import deposito.*
+
+describe "depositos"{
+	const deposito1 = new Deposito()
+	const deposito2 = new Deposito()
+	const canastoVol8 = new Canasto(volumen = 8)
+	const morralLar21 = new MorralDeBici(largo = 21)
+	const morralLar6 = new MorralDeBici(largo = 6)
+	
+	const biciRod28 = new Bici(
+					nombre = "biciRod28",
+					rodado = 28,
+					largo = 150,
+					marca = "olmo",
+					accesorios = [farolito]
+					)
+	
+	const biciRod26 = new Bici(
+					nombre = "biciRod26",
+					rodado = 26,
+					largo = 110,
+					marca = "legnano",
+					accesorios = [farolito, canastoVol8, morralLar21]
+					)
+					
+	const biciRod20 = new Bici(
+					nombre = "biciRod20",
+					rodado = 20,
+					largo = 90,
+					marca = "legnano",
+					accesorios = [morralLar6]
+					)
+					
+	const bicicleta = new Bici(
+					nombre = "bicicleta",
+					rodado = 28,
+					largo = 180,
+					marca = "olmo",
+					accesorios = [morralLar6]
+					)
+		
+	const bicicleta2 = new Bici(
+					nombre = "bicicleta2",
+					rodado = 26,
+					largo = 175,
+					marca = "olmo"
+					)
+					
+	fixture {
+		morralLar21.tieneOjoDeGato()
+		morralLar6.noTieneOjoDeGato()
+		
+		deposito1.agregarBici(biciRod28)
+		deposito1.agregarBici(biciRod26)
+		deposito1.agregarBici(biciRod20)
+		deposito1.agregarBici(bicicleta)
+		deposito1.agregarBici(bicicleta2)
+		
+		deposito2.agregarBici(biciRod28)
+		deposito2.agregarBici(biciRod26)
+	}
+	
+	test "deposito 1" {
+		assert.equals([biciRod28, biciRod26, bicicleta, bicicleta2], deposito1.bicisMasRapidas())
+		assert.equals(#{"olmo", "legnano"}, deposito1.todasLasMarcas())
+		assert.notThat(deposito1.esNocturno())
+		assert.that(deposito1.puedeLlevarCarga(10))
+		assert.notThat(deposito1.puedeLlevarCarga(50))
+		assert.equals("olmo", deposito1.marcaDeLaMasRapida())
+		assert.equals(2, deposito1.cargaDeLasMasLargas())
+		assert.equals(1, deposito1.bicisSinAccesorios())
+		assert.equals(["bicicleta2"], deposito1.esCompaniera(bicicleta))
+	}
+	
+	test "deposito2" {
+		assert.that(deposito2.esNocturno())
+	}
+	
+	
+}

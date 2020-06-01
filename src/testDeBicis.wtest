@@ -1,0 +1,64 @@
+import bicis.*
+import accesorios.*
+
+describe "bicis"{
+	const canastoVol8 = new Canasto(volumen = 8)
+	const morralLar21 = new MorralDeBici(largo = 21)
+	const morralLar6 = new MorralDeBici(largo = 6)
+	
+	const biciRod28 = new Bici(
+					nombre = "biciRod28",
+					rodado = 28,
+					largo = 150,
+					marca = "olmo",
+					accesorios = [farolito]
+					)
+	
+	const biciRod26 = new Bici(
+					nombre = "biciRod26",
+					rodado = 26,
+					largo = 110,
+					marca = "legnano",
+					accesorios = [farolito, canastoVol8, morralLar21]
+					)
+					
+	const biciRod20 = new Bici(
+					nombre = "biciRod20",
+					rodado = 20,
+					largo = 90,
+					marca = "legnano",
+					accesorios = [morralLar6]
+					)
+	
+	
+	test "bici rodado 28" {
+		assert.equals(85, biciRod28.altura())
+		assert.equals(34, biciRod28.velocidadCrucero())
+		assert.equals(0, biciRod28.carga())
+		assert.equals(14.5, biciRod28.peso())
+		assert.that(biciRod28.tieneLuz())
+		assert.equals(1, biciRod28.accesoriosLivianos())
+	}
+	
+	test "bici rodado 26" {
+		morralLar21.tieneOjoDeGato()
+		
+		assert.equals(80, biciRod26.altura())
+		assert.equals(28, biciRod26.velocidadCrucero())
+		assert.equals(23, biciRod26.carga())
+		assert.equals(15.5, biciRod26.peso())
+		assert.that(biciRod26.tieneLuz())
+		assert.equals(2, biciRod26.accesoriosLivianos())
+	}
+	
+	test "bici rodado 20" {
+		morralLar6.noTieneOjoDeGato()
+		
+		assert.equals(65, biciRod20.altura())
+		assert.equals(22, biciRod20.velocidadCrucero())
+		assert.equals(2, biciRod20.carga())
+		assert.equals(11.2, biciRod20.peso())
+		assert.notThat(biciRod20.tieneLuz())
+		assert.equals(0, biciRod20.accesoriosLivianos())
+	}
+}
