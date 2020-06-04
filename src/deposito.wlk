@@ -49,15 +49,7 @@ class Deposito {
 	}
 	
 	method esCompaniera(bici){
-		const esCompa = {unaBici => unaBici.marca() == bici.marca() 
-					and not(unaBici.nombre() == bici.nombre())}
-		
-		const nombres = {unaBici => unaBici.nombre()}
-		return self.largoAprox(bici).filter(esCompa).map(nombres)
-	}
-	
-	method largoAprox(bici){
-		const largoAprox = {unaBici => unaBici.largo().between(bici.largo() - 10, bici.largo() + 10)}
-		return bicisGuardadas.filter(largoAprox)
+		const esCompa = { unaBici => bici.sonCompanieras(unaBici)}
+		return bicisGuardadas.filter(esCompa)
 	}
 }

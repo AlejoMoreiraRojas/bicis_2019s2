@@ -7,7 +7,6 @@ describe "bicis"{
 	const morralLar6 = new MorralDeBici(largo = 6)
 	
 	const biciRod28 = new Bici(
-					nombre = "biciRod28",
 					rodado = 28,
 					largo = 150,
 					marca = "olmo",
@@ -15,7 +14,6 @@ describe "bicis"{
 					)
 	
 	const biciRod26 = new Bici(
-					nombre = "biciRod26",
 					rodado = 26,
 					largo = 110,
 					marca = "legnano",
@@ -23,7 +21,6 @@ describe "bicis"{
 					)
 					
 	const biciRod20 = new Bici(
-					nombre = "biciRod20",
 					rodado = 20,
 					largo = 90,
 					marca = "legnano",

@@ -1,7 +1,6 @@
 import accesorios.*
 
 class Bici {
-	var property nombre
 	var property rodado
 	var property largo
 	var property marca
@@ -37,5 +36,13 @@ class Bici {
 	method accesoriosLivianos(){
 		const losLivianos = {accesorio => accesorio.peso()< 1}
 		return accesorios.count(losLivianos)
+	}
+	
+	method sonCompanieras(bici){
+		return 	self.marca() == bici.marca()
+				&&
+				(self.largo() - bici.largo()).between(-10, 10)
+				&&
+				self != bici
 	}
 }
